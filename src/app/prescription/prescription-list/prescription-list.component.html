@@ -1,0 +1,38 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Prescription list</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Description</th>
+        <th>Create date</th>
+        <th>Expiration date</th>
+        <th>Priority</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let prescription of prescriptions | async">
+        <td>{{ prescription.patient}}</td>
+        <td>{{ prescription.doctor.toString() }}</td>
+        <td>{{ prescription.description }}</td>
+        <td>>{{ prescription.createDate }}</td>
+        <td>>{{ prescription.expirationDate }}</td>
+        <td>>{{ prescription.priority }}</td>
+        <td>
+          <button (click)="deletePrescription(prescription.id)" class="btn btn-danger">Delete</button>
+          <button (click)="prescriptionDetails(prescription.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+      <button (click)="createPrescription()" class="btn-info" style="float: right">Add</button>
+    </div>
+  </div>
+</div>
+

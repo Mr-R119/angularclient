@@ -1,0 +1,28 @@
+<h3>Details Prescription</h3>
+
+<hr/>
+<div *ngIf="prescription">
+  <div>
+    <label><b>Patient: </b></label> {{prescription.patient.toString()}}
+  </div>
+  <div>
+    <label><b>Doctor: </b></label> {{(prescription.doctor).toString()}}
+  </div>
+  <div>
+    <label><b>Description: </b></label> {{prescription.description}}
+  </div>
+  <div>
+    <label><b>Create date: </b></label> {{prescription.createDate}}
+  </div>
+  <div>
+    <label><b>Expiration date: </b></label> {{prescription.expirationDate}}
+  </div>
+  <div>
+    <label><b>Priority: </b></label> {{prescription.priority}}
+  </div>
+</div>
+
+<br>
+<br>
+<button (click)="update()" class="btn btn-primary">Edit</button><br>
+<button (click)="list()" class="btn btn-primary">Back to prescription list</button><br>

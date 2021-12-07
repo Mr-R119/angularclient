@@ -1,0 +1,33 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Doctor list</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead class="thead-dark">
+      <tr>
+        <th>Lastname</th>
+        <th>Firstname</th>
+        <th>Patronymic</th>
+        <th>Specialization</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let doctor of doctors | async">
+        <td>{{doctor.secondName}}</td>
+        <td>{{doctor.firstName}}</td>
+        <td>{{doctor.patronymic}}</td>
+        <td>{{doctor.specialization}}</td>
+        <td>
+          <button (click)="deleteDoctor(doctor.id)" class="btn btn-danger">Delete</button>
+          <button (click)="doctorDetails(doctor.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+      <button (click)="createDoctor()" class="btn-info" style="float: right">Add</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<h3>Update Doctor</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Second Name</label>
+      <input type="text" class="form-control" id="firstName" required [(ngModel)]="patient.secondName" name="secondName">
+    </div>
+
+    <div class="form-group">
+      <label for="name">First Name</label>
+      <input type="text" class="form-control" id="lastName" required [(ngModel)]="patient.firstName" name="firstName">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Patronymic</label>
+      <input type="text" class="form-control" id="patronymic" required [(ngModel)]="patient.patronymic" name="patronymic">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Phone</label>
+      <input type="text" class="form-control" id="phone" required [(ngModel)]="patient.phone" name="phone">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

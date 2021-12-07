@@ -1,0 +1,31 @@
+<h3>Update Prescription</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Patient</label>
+      <input type="text" class="form-control" id="patient" required [(ngModel)]="prescription.patient" name="patient">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Doctor</label>
+      <input type="text" class="form-control" id="doctor" required [(ngModel)]="prescription.doctor" name="doctor">
+    </div>
+
+    <div class="form-group">
+      <label for="name">description</label>
+      <input type="text" class="form-control" id="description" required [(ngModel)]="prescription.description" name="description">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Create date</label>
+      <input type="text" class="form-control" id="createDate" required [(ngModel)]="prescription.createDate" name="createDate">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Expiration date</label>
+      <input type="text" class="form-control" id="expirationDate" required [(ngModel)]="prescription.expirationDate" name="expirationDate">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>

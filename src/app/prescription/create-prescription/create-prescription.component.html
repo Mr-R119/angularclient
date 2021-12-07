@@ -1,0 +1,47 @@
+<h3>Create prescription</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form [formGroup]="prescriptionForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Patient</label>
+      <select type="text" class="form-control" id="patient" required [(ngModel)]="prescription.patient" name="patient">
+        <option *ngFor="let patient of patientService.getPatientsList() | async" [ngValue]="patient.id">
+            {{patient.toString()}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Doctor</label>
+      <select type="text" class="form-control" id="doctor" required [(ngModel)]="prescription.doctor" name="doctor">
+        <option *ngFor="let doctor of doctorService.getDoctorsList() | async" [ngValue]="doctor.id">
+          {{doctor.toString()}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="name">Description</label>
+      <input type="text" class="form-control" id="description" required [(ngModel)]="prescription.description"
+             name="description">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Create date</label>
+      <input type="text" class="form-control" id="createDate" required [(ngModel)]="prescription.createDate"
+             name="createDate">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Expiration date</label>
+      <input type="text" class="form-control" id="expirationDate" required [(ngModel)]="prescription.expirationDate"
+             name="expirationDate">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
+</div>
