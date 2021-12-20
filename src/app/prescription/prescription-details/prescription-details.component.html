@@ -3,10 +3,10 @@
 <hr/>
 <div *ngIf="prescription">
   <div>
-    <label><b>Patient: </b></label> {{prescription.patient.toString()}}
+    <label><b>Patient: </b></label> {{ patient.secondName + " " + patient.firstName  + " " +  patient.patronymic }}
   </div>
   <div>
-    <label><b>Doctor: </b></label> {{(prescription.doctor).toString()}}
+    <label><b>Doctor: </b></label> {{ doctor.secondName + " " + doctor.firstName  + " " +  doctor.patronymic }}
   </div>
   <div>
     <label><b>Description: </b></label> {{prescription.description}}
@@ -22,7 +22,4 @@
   </div>
 </div>
 
-<br>
-<br>
-<button (click)="update()" class="btn btn-primary">Edit</button><br>
-<button (click)="list()" class="btn btn-primary">Back to prescription list</button><br>
+<button (click)="list()" class="btn btn-primary">Back to prescription list</button>

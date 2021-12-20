@@ -22,14 +22,10 @@ export class DoctorDetailsComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
 
     this.doctorService.getDoctor(this.id)
-      .subscribe(data => {
+      .subscribe((data: Doctor) => {
         console.log(data)
         this.doctor = data;
       }, error => console.log(error));
-  }
-
-  update(){
-    this.router.navigate(['doctors/update',this.id])
   }
 
   list(){

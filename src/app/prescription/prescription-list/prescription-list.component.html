@@ -16,16 +16,17 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let prescription of prescriptions | async">
-        <td>{{ prescription.patient}}</td>
-        <td>{{ prescription.doctor.toString() }}</td>
-        <td>{{ prescription.description }}</td>
-        <td>>{{ prescription.createDate }}</td>
-        <td>>{{ prescription.expirationDate }}</td>
-        <td>>{{ prescription.priority }}</td>
+      <tr *ngFor="let uiPrescription of uiPrescriptions" >
+        <td>{{ uiPrescription.patient.secondName+ "\n" + uiPrescription.patient.firstName + "\n" + uiPrescription.patient.patronymic }}</td>
+        <td>{{ uiPrescription.doctor.secondName + "\n" + uiPrescription.doctor.firstName + "\n" + uiPrescription.doctor.patronymic }}</td>
+        <td>{{ uiPrescription.description }}</td>
+        <td>{{ uiPrescription.createDate }}</td>
+        <td>{{ uiPrescription.expirationDate }}</td>
+        <td>{{ uiPrescription.priority }}</td>
         <td>
-          <button (click)="deletePrescription(prescription.id)" class="btn btn-danger">Delete</button>
-          <button (click)="prescriptionDetails(prescription.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+          <button (click)="deletePrescription(uiPrescription.id)" class="btn btn-danger">Delete</button>
+          <button (click)="prescriptionDetails(uiPrescription.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+          <button (click)="updatePrescription(uiPrescription.id)" class="btn btn-primary" style="margin-left: 10px">Edit</button>
         </td>
       </tr>
       </tbody>

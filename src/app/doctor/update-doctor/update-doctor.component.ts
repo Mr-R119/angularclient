@@ -12,7 +12,6 @@ export class UpdateDoctorComponent implements OnInit{
 
   id: number;
   doctor: Doctor;
-  submitted: false;
 
   constructor(private route: ActivatedRoute,private router: Router,
               private doctorService: DoctorService) { }
@@ -31,9 +30,11 @@ export class UpdateDoctorComponent implements OnInit{
 
   updateDoctor() {
     this.doctorService.updateDoctor(this.id, this.doctor)
-      .subscribe(data => console.log(data), error => console.log(error));
-    this.doctor = new Doctor();
-    this.gotoList();
+      .subscribe((data: Doctor) => {
+        console.log(data);
+        this.doctor = new Doctor();
+        this.gotoList();
+      }, error => console.log(error));
   }
 
   onSubmit() {
@@ -41,6 +42,6 @@ export class UpdateDoctorComponent implements OnInit{
   }
 
   gotoList() {
-    this.router.navigate(['/employees']);
+    this.router.navigate(['/doctors']);
   }
 }

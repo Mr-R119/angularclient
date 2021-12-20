@@ -1,20 +1,20 @@
 <h3>Create prescription</h3>
 <div [hidden]="submitted" style="width: 400px;">
-  <form [formGroup]="prescriptionForm" (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="name">Patient</label>
-      <select type="text" class="form-control" id="patient" required [(ngModel)]="prescription.patient" name="patient">
-        <option *ngFor="let patient of patientService.getPatientsList() | async" [ngValue]="patient.id">
-            {{patient.toString()}}
+      <select class="form-control" id="patient" required [(ngModel)]="selectedPatient" name="patient">
+        <option *ngFor="let patient of patients" [ngValue]="patient">
+          {{ patient.secondName + " " + patient.firstName  + " " +  patient.patronymic }}
         </option>
       </select>
     </div>
 
     <div class="form-group">
       <label for="name">Doctor</label>
-      <select type="text" class="form-control" id="doctor" required [(ngModel)]="prescription.doctor" name="doctor">
-        <option *ngFor="let doctor of doctorService.getDoctorsList() | async" [ngValue]="doctor.id">
-          {{doctor.toString()}}
+      <select class="form-control" id="doctor" required [(ngModel)]="selectedDoctor" name="doctor">
+        <option *ngFor="let doctor of doctors" [ngValue]="doctor">
+          {{ doctor.secondName + " " + doctor.firstName  + " " +  doctor.patronymic }}
         </option>
       </select>
     </div>
@@ -27,21 +27,26 @@
 
     <div class="form-group">
       <label for="name">Create date</label>
-      <input type="text" class="form-control" id="createDate" required [(ngModel)]="prescription.createDate"
+      <input type="date" class="form-control" id="createDate" placeholder="yyyy-MM-dd" required [(ngModel)]="prescription.createDate"
              name="createDate">
     </div>
 
     <div class="form-group">
       <label for="name">Expiration date</label>
-      <input type="text" class="form-control" id="expirationDate" required [(ngModel)]="prescription.expirationDate"
+      <input type="date" class="form-control" id="expirationDate" placeholder="yyyy-MM-dd" required [(ngModel)]="prescription.expirationDate"
              name="expirationDate">
     </div>
 
-    <button type="submit" class="btn btn-success">Submit</button>
+    <div class="form-group">
+      <label for="name">Priority</label>
+      <input type="text" class="form-control" id="priority" required [(ngModel)]="prescription.priority"
+             name="priority">
+    </div>
+
+    <button (click)="save()" class="btn btn-success">Submit</button>
   </form>
 </div>
 
-<div [hidden]="!submitted">
+<div *ngIf="submitted">
   <h4>You submitted successfully!</h4>
-  <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
 </div>

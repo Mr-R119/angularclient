@@ -6,22 +6,23 @@
     <table class="table table-striped">
       <thead class="thead-dark">
       <tr>
-        <th>Second name</th>
-        <th>First name</th>
+        <th>Surname</th>
+        <th>Name</th>
         <th>Patronymic</th>
         <th>Phone</th>
         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let patient of patients | async">
+      <tr *ngFor="let patient of patients">
         <td>{{ patient.secondName }}</td>
         <td>{{ patient.firstName }}</td>
         <td>{{ patient.patronymic }}</td>
-        <td>>{{ patient.phone }}</td>
+        <td>{{ patient.phone }}</td>
         <td>
           <button (click)="deletePatient(patient.id)" class="btn btn-danger">Delete</button>
           <button (click)="patientDetails(patient.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+          <button (click)="updatePatient(patient.id)" class="btn btn-primary" style="margin-left: 10px">Edit</button>
         </td>
       </tr>
       </tbody>

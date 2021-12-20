@@ -4,7 +4,10 @@ import { PrescriptionService } from '../../service/prescription.service';
 import { Prescription } from '../model/prescription';
 import {DoctorService} from "../../service/doctor.service";
 import {PatientService} from "../../service/patient.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {Doctor} from "../../doctor/model/doctor";
+import {Patient} from "../../patient/model/patient";
+import * as moment from 'moment-timezone';
+import {UiPrescription} from "../model/uiPrescription";
 
 @Component({
   selector: 'app-create-prescription',
@@ -13,47 +16,61 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 })
 export class CreatePrescriptionComponent implements OnInit{
 
-  doctorService: DoctorService;
-  patientService: PatientService;
-  prescriptionForm: FormGroup;
+  doctors: Doctor[];
+  patients: Patient[];
 
+  selectedPatient: Patient;
+  selectedDoctor: Doctor;
 
-  prescription: Prescription = {
+  prescription: UiPrescription = {
+    doctor: new Doctor(),
+    patient: new Patient(),
+    createDate:'',
+    expirationDate:'',
     description: '',
-    createDate: new Date(),
-    expirationDate: new Date,
     priority:''
   };
   submitted = false;
 
 
-  constructor(private prescriptionService: PrescriptionService,
-              private router: Router, private fb:FormBuilder) { }
+  constructor(private prescriptionService: PrescriptionService, private patientService: PatientService,
+              private doctorService: DoctorService, private router: Router) { }
 
   ngOnInit() {
-    this.prescriptionForm = this.fb.group({
-      patient: [null],
-      doctor: [null]
-    });
+    this.getPatients();
+    this.getDoctors();
   }
 
-
   save(): void {
-    const data = {
+    const prescription = {
+      patientId: this.selectedPatient.id,
+      doctorId: this.selectedDoctor.id,
       description: this.prescription.description,
       createDate: this.prescription.createDate,
       expirationDate: this.prescription.expirationDate,
       priority: this.prescription.priority,
     };
 
-    this.prescriptionService.createPrescription(data)
-      .subscribe(
-        data => {
+    this.prescriptionService.createPrescription(prescription)
+      .subscribe(data => {
           console.log(data);
           this.submitted = true;
           this.gotoList()
-        },
-        error => console.log(error));
+        }, error => console.log(error));
+  }
+
+  getPatients(){
+   this.patientService.getPatientsList()
+     .subscribe(data => {
+       this.patients = data;
+     });
+  }
+
+  getDoctors(){
+    this.doctorService.getDoctorsList()
+      .subscribe(data => {
+        this.doctors = data;
+      });
   }
 
   onSubmit() {

@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
 })
 export class PatientListComponent implements OnInit {
 
-  patients: Observable<Patient[]>;
+  patients: Patient[];
 
   constructor(private patientService: PatientService, private router: Router) {
 
@@ -23,7 +23,10 @@ export class PatientListComponent implements OnInit {
   }
 
   reloadData() {
-    this.patients = this.patientService.getPatientsList();
+    this.patientService.getPatientsList()
+      .subscribe(data => {
+          this.patients = data;
+        });
   }
 
   createPatient(){
@@ -42,5 +45,9 @@ export class PatientListComponent implements OnInit {
 
   patientDetails(id: number) {
     this.router.navigate(['patients/details', id]);
+  }
+
+  updatePatient(id: number){
+    this.router.navigate(['patients/update', id])
   }
 }

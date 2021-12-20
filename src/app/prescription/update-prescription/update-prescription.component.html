@@ -1,18 +1,27 @@
 <h3>Update Prescription</h3>
 <div [hidden]="submitted" style="width: 400px;">
   <form (ngSubmit)="onSubmit()">
+
     <div class="form-group">
       <label for="name">Patient</label>
-      <input type="text" class="form-control" id="patient" required [(ngModel)]="prescription.patient" name="patient">
+      <select type="text" class="form-control" id="patient" required [(ngModel)]="selectedPatient" name="patient">
+        <option *ngFor="let patient of patients | async" [ngValue]="patient">
+          {{ patient.secondName + " " + patient.firstName  + " " +  patient.patronymic }}
+        </option>
+      </select>
     </div>
 
     <div class="form-group">
       <label for="name">Doctor</label>
-      <input type="text" class="form-control" id="doctor" required [(ngModel)]="prescription.doctor" name="doctor">
+      <select type="text" class="form-control" id="doctor" required [(ngModel)]="selectedDoctor" name="doctor">
+        <option *ngFor="let doctor of doctors | async" [ngValue]="doctor">
+          {{ doctor.secondName + " " + doctor.firstName  + " " +  doctor.patronymic }}
+        </option>
+      </select>
     </div>
 
     <div class="form-group">
-      <label for="name">description</label>
+      <label for="name">Description</label>
       <input type="text" class="form-control" id="description" required [(ngModel)]="prescription.description" name="description">
     </div>
 
@@ -24,6 +33,11 @@
     <div class="form-group">
       <label for="name">Expiration date</label>
       <input type="text" class="form-control" id="expirationDate" required [(ngModel)]="prescription.expirationDate" name="expirationDate">
+    </div>
+
+    <div class="form-group">
+      <label for="name">Priority</label>
+      <input type="text" class="form-control" id="priority" required [(ngModel)]="prescription.priority" name="priority">
     </div>
 
     <button type="submit" class="btn btn-success">Submit</button>

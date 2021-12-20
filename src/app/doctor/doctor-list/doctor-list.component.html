@@ -6,15 +6,15 @@
     <table class="table table-striped">
       <thead class="thead-dark">
       <tr>
-        <th>Lastname</th>
-        <th>Firstname</th>
+        <th>Surname</th>
+        <th>Name</th>
         <th>Patronymic</th>
         <th>Specialization</th>
         <th>Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let doctor of doctors | async">
+      <tr *ngFor="let doctor of doctors">
         <td>{{doctor.secondName}}</td>
         <td>{{doctor.firstName}}</td>
         <td>{{doctor.patronymic}}</td>
@@ -22,6 +22,7 @@
         <td>
           <button (click)="deleteDoctor(doctor.id)" class="btn btn-danger">Delete</button>
           <button (click)="doctorDetails(doctor.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+          <button (click)="updateDoctor(doctor.id)" class="btn btn-primary" style="margin-left:10px">Edit</button>
         </td>
       </tr>
       </tbody>

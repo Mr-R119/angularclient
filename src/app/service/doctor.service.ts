@@ -11,7 +11,7 @@ export class DoctorService {
 
   constructor(private http: HttpClient) { }
 
-  getDoctor(id: number): Observable<any> {
+  getDoctor(id: number): Observable<any>{
     return this.http.get(`${this.baseUrl}/find/${id}`);
   }
 

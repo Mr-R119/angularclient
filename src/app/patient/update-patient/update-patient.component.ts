@@ -23,7 +23,7 @@ export class UpdatePatientComponent implements OnInit{
     this.id = this.route.snapshot.params['id'];
 
     this.patientService.getPatient(this.id)
-      .subscribe(data => {
+      .subscribe((data: Patient) => {
         console.log(data)
         this.patient = data;
       }, error => console.log(error));
@@ -31,7 +31,8 @@ export class UpdatePatientComponent implements OnInit{
 
   updatePatient() {
     this.patientService.updatePatient(this.id, this.patient)
-      .subscribe(data => console.log(data), error => console.log(error));
+      .subscribe(data => console.log(data),
+          error => console.log(error));
     this.patient = new Patient();
     this.gotoList();
   }
