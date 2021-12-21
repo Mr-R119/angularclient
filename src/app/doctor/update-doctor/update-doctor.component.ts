@@ -12,6 +12,7 @@ export class UpdateDoctorComponent implements OnInit{
 
   id: number;
   doctor: Doctor;
+  submitted: false;
 
   constructor(private route: ActivatedRoute,private router: Router,
               private doctorService: DoctorService) { }
@@ -22,7 +23,7 @@ export class UpdateDoctorComponent implements OnInit{
     this.id = this.route.snapshot.params['id'];
 
     this.doctorService.getDoctor(this.id)
-      .subscribe(data => {
+      .subscribe((data: Doctor) => {
         console.log(data)
         this.doctor = data;
       }, error => console.log(error));
